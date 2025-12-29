@@ -39,3 +39,5 @@ function Login() {
 
 export default Login;
 
+//style cho button logout trong AdminLayout.js
+//import "antd/dist/reset.css"; trong index.js

@@ -1,27 +1,54 @@
-import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { Card } from "antd";
+import axios from "axios";
 
-function UserDetail() {
-  const { id } = useParams();
-  const [user, setUser] = useState(null);
+function UserList() {
+  const [users, setUsers] = useState([]);    
+  const [loading, setLoading] = useState(true); 
+  const [error, setError] = useState(null);     
 
   useEffect(() => {
-    fetch(`https://jsonplaceholder.typicode.com/users/${id}`)
-      .then(res => res.json())
-      .then(data => setUser(data));
-  }, [id]);
+    const fetchUsers = async () => {
+      try {
+        setLoading(true);
+        const response = await axios.get(
+          "https://jsonplaceholder.typicode.com/users"
+        );
+        setUsers(response.data);
+      } catch (err) {
+        setError("Không thể tải danh sách người dùng");
+      } finally {
+        setLoading(false);
+      }
+    };
 
-  if (!user) return null;
+    fetchUsers();
+  }, []);
+
+  if (loading) {
+    return <p>Đang tải dữ liệu...</p>;
+  }
+
+  if (error) {
+    return <p style={{ color: "red" }}>{error}</p>;
+  }
 
   return (
-    <Card title="User Detail">
-      <p>Name: {user.name}</p>
-      <p>Email: {user.email}</p>
-      <p>Phone: {user.phone}</p>
-      <p>Website: {user.website}</p>
-    </Card>
+    <div>
+      <h2>Danh sách người dùng</h2>
+      <ul>
+        {users.map((user) => (
+          <li key={user.id}>
+            <strong>{user.name}</strong> – 
+            {user.email} - 
+            {user.phone} - 
+            {user.website} - 
+            {user.address.city} - 
+            {user.company.name}
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 }
 
-export default UserDetail;
+export default UserList;

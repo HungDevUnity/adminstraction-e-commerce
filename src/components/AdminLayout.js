@@ -1,7 +1,7 @@
 import { Layout, Menu, Button } from "antd";
 import { Outlet, useNavigate } from "react-router-dom";
 
-const { Header, Sider, Content } = Layout;
+const { Sider, Content } = Layout;
 
 function AdminLayout() {
   const navigate = useNavigate();
@@ -21,14 +21,12 @@ function AdminLayout() {
             { key: "1", label: "Dashboard", onClick: () => navigate("/") },
             { key: "2", label: "Users", onClick: () => navigate("/users") },
             { key: "3", label: "Products", onClick: () => navigate("/products") },
+            { key: "4", label: <Button type="primary" danger onClick={logout}>Logout</Button> },
           ]}
         />
       </Sider>
 
       <Layout>
-        <Header style={{ background: "#fff", textAlign: "right" }}>
-          <Button onClick={logout}>Logout</Button>
-        </Header>
         <Content style={{ margin: 16 }}>
           <Outlet />
         </Content>

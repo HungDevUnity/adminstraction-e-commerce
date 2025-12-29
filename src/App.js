@@ -2,7 +2,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import Users from "./pages/Users";
-import UserDetail from "./pages/UserDetail";
 import Products from "./pages/Products";
 import PrivateRoute from "./routes/PrivateRoute";
 import AdminLayout from "./components/AdminLayout";
@@ -23,7 +22,6 @@ function App() {
         >
           <Route index element={<Dashboard />} />
           <Route path="users" element={<Users />} />
-          <Route path="users/:id" element={<UserDetail />} />
           <Route path="products" element={<Products />} />
         </Route>
       </Routes>
