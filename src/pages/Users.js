@@ -38,12 +38,12 @@ function UserList() {
       <ul>
         {users.map((user) => (
           <li key={user.id}>
-            <strong>{user.name}</strong> – 
-            {user.email} - 
-            {user.phone} - 
-            {user.website} - 
-            {user.address.city} - 
-            {user.company.name}
+            <strong>{user.name}</strong>
+              <tr>Name: {user.email}</tr>
+              <tr>Phone: {user.phone}</tr>
+              <tr>Website: {user.website}</tr>
+              <tr>Email: {user.email}</tr>
+              <br />
           </li>
         ))}
       </ul>
