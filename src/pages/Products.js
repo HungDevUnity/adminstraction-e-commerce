@@ -30,6 +30,7 @@ function Products() {
         </Button>
       ),
     },
+    {title: ""}
   ];
 
   return <Table columns={columns} dataSource={products} rowKey="id" />;
